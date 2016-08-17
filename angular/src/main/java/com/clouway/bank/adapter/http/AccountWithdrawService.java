@@ -49,11 +49,11 @@ public class AccountWithdrawService extends HttpServlet {
         response.setContentType("application/json");
         response.getWriter().println(gson.toJson(new TransactionReport(currentBalance, message)));
       } else {
-        response.setStatus(400);
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.getWriter().println(message);
       }
     } catch (ValidationException e) {
-      response.setStatus(400);
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
       response.getWriter().println(e.getMessage());
     }
   }

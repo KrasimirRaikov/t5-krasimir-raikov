@@ -1,0 +1,18 @@
+<div class="jumbotron" ng-controller="LoginCtrl">
+    <form>
+        <div class="form-group">
+            <label>Username</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <input type="text" class="form-control" placeholder="Username" ng-model="vm.username">
+            </div>
+            <label for="password">Password</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                <input class="form-control" type="password" id="password" placeholder="Password"
+                       ng-model="vm.password">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="vm.login(vm.username, vm.password)">Login</button>
+    </form>
+</div>

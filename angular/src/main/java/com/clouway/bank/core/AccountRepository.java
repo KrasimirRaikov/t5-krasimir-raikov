@@ -17,9 +17,10 @@ public interface AccountRepository {
   /**
    * withdraw funds
    *
-   * @param amount funds to withdraw
+   * @param amount of funds to withdraw
+   * @throws ValidationException
    */
-  Double withdraw(Amount amount);
+  Double withdraw(Amount amount) throws ValidationException;
 
   /**
    * will return the current state of the balance

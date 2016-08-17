@@ -67,6 +67,8 @@ angular.module('bank.operations', [
     vm.loadCurrentBalance = function () {
       accountGateway.getCurrentBalance().then(function (balanceResult) {
         vm.balance = balanceResult;
+      }, function (errorResult) {
+        growl.error(errorResult);
       });
     };
   });

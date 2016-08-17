@@ -6,4 +6,6 @@ package com.clouway.bank.core;
 public interface SessionProvider {
 
   Session get();
+
+  void set(Session session);
 }

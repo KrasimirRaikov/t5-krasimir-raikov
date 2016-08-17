@@ -33,13 +33,12 @@ public class PersistentAccountRepository implements AccountRepository {
   }
 
   /**
-   * Withdraws funds
-   *
-   * @param amount funds to withdraw
+   * @param amount of funds to withdraw
    * @return
+   * @throws ValidationException
    */
   @Override
-  public Double withdraw(Amount amount) {
+  public Double withdraw(Amount amount) throws ValidationException {
     String updateQuery = "UPDATE account SET balance=balance-? WHERE username=?";
     if (getCurrentBalance(amount.userId) < amount.value) {
       throw new ValidationException("insufficient amount");

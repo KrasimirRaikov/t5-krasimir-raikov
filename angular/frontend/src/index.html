@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="bank" ng-controller="AppCtrl">
+<html ng-app="bank" ng-controller="AppCtrl as vm">
 <head>
     <title ng-bind="pageTitle"></title>
 
@@ -17,42 +17,49 @@
     <script type="text/javascript" src="<%= file %>"></script>
     <% }); %>
 
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+
 </head>
 <body>
 <div class="container">
     <div class="navbar navbar-default">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
-                    ng-click="menuCollapsed = ! menuCollapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <div class="navbar-brand">
-                ngbp
-                <small>
-                    <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
-                        v<%= version %>
-                    </a>
-                </small>
+                bank
             </div>
         </div>
-        <div class="collapse navbar-collapse" collapse="menuCollapsed">
-          <ul class="nav navbar-nav">
-            <li ui-sref-active="active">
-              <a href ui-sref="home">
-                <i class="fa fa-home"></i>
-                Home
-              </a>
-            </li>
-            <li ui-sref-active="active">
-              <a href ui-sref="operations">
-                <i class="fa fa-usd"></i>
-                Operations
-              </a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse" collapse="menuCollapsed" ng-init="vm.fetchCurrentUser()">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active">
+                    <a href ui-sref="home">
+                        <i class="fa fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a href ui-sref="operations">
+                        <i class="fa fa-usd"></i>
+                        Operations
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="vm.getCurrentUser()===undefined">
+                <li ui-sref-active="active">
+                    <a href ui-sref="login">
+                        <i class="fa fa-sign-in"></i>
+                        Login
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="vm.getCurrentUser()!==undefined">
+                <li ui-sref-active="active">
+                    <a>
+                        {{vm.getCurrentUser()}}
+                    </a>
+                </li>
+            </ul>
+
         </div>
 
     </div>
