@@ -6,7 +6,8 @@ angular.module('bank', [
   'ui.router',
   'angular-growl',
   'bank.login',
-  'ngCookies'
+  'ngCookies',
+  'bank.register'
 ])
 
   .config(function myAppConfig($stateProvider, $urlRouterProvider, $httpProvider, growlProvider) {

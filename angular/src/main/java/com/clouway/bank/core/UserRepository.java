@@ -6,6 +6,13 @@ package com.clouway.bank.core;
 public interface UserRepository {
 
   /**
+   * Registers user in the repository
+   *
+   * @param user the user object
+   */
+  void register(User user);
+
+  /**
    * finds the user by name
    *
    * @param userId the user name

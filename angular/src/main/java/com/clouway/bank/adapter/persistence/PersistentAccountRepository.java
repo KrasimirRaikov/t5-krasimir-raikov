@@ -62,4 +62,16 @@ public class PersistentAccountRepository implements AccountRepository {
 
     return dataStore.fetchRows(selectQuery, rowFetcher, userId).get(0);
   }
+
+
+  /**
+   * initiates empty account for the user
+   *
+   * @param userId the users unique name
+   */
+  @Override
+  public void createAccount(String userId) {
+    String insertQuery = "INSERT INTO account(username, balance) VALUES(?, ?);";
+    dataStore.executeQuery(insertQuery, userId, 0D);
+  }
 }

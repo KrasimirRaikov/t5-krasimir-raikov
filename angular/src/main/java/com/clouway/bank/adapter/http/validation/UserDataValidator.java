@@ -1,5 +1,6 @@
 package com.clouway.bank.adapter.http.validation;
 
+import com.clouway.bank.core.RegistrationDto;
 import com.clouway.bank.core.User;
 import com.clouway.bank.core.UserValidator;
 

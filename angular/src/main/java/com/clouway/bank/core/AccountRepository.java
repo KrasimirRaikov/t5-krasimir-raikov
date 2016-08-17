@@ -29,4 +29,12 @@ public interface AccountRepository {
    * @return the balance for the given user
    */
   Double getCurrentBalance(String userId);
+
+
+  /**
+   * initiates empty account for the user
+   *
+   * @param userId the users unique name
+   */
+  void createAccount(String userId);
 }

@@ -4,6 +4,7 @@ import com.clouway.bank.core.DataStore;
 import com.clouway.bank.core.RowFetcher;
 import com.clouway.bank.core.User;
 import com.clouway.bank.core.UserRepository;
+import com.clouway.bank.core.ValidationException;
 import com.google.inject.Inject;
 
 import java.util.ArrayList;
@@ -19,6 +20,22 @@ public class PersistentUserRepository implements UserRepository {
   public PersistentUserRepository(DataStore dataStore) {
     this.dataStore = dataStore;
   }
+
+  /**
+   * Registers the user
+   *
+   * @param user the user object
+   */
+  @Override
+  public void register(User user) {
+    String query = "INSERT INTO users(username, password) VALUES(?, ?);";
+
+    if (getUserById(user.username) != null) {
+      throw new ValidationException("username is taken");
+    }
+    dataStore.executeQuery(query, user.username, user.password);
+  }
+
 
   /**
    * Finds user by it's name
