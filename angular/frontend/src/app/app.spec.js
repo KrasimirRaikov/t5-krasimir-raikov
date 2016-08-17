@@ -1,16 +1,16 @@
-describe( 'AppCtrl', function() {
-  describe( 'isCurrentUrl', function() {
-    var AppCtrl,  $scope;
+describe('AppCtrl', function () {
+  describe('isCurrentUrl', function () {
+    var AppCtrl, $scope;
 
-    beforeEach( module( 'bank' ) );
+    beforeEach(module('bank'));
 
-    beforeEach( inject( function( $controller,  $rootScope ) {
+    beforeEach(inject(function ($controller, $rootScope) {
       $scope = $rootScope.$new();
-      AppCtrl = $controller( 'AppCtrl', {  $scope: $scope });
+      AppCtrl = $controller('AppCtrl', {$scope: $scope});
     }));
 
-    it( 'should pass a dummy test', inject( function() {
-      expect( AppCtrl ).toBeTruthy();
+    it('should pass a dummy test', inject(function () {
+      expect(AppCtrl).toBeTruthy();
     }));
   });
 });
