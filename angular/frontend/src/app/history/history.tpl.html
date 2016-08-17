@@ -1,0 +1,34 @@
+<div ng-controller="HistoryCtrl as vm" class="jumbotron">
+
+
+    <table style="width:100%" ng-init="vm.initializeContent()">
+        <tr>
+            <th>Date</th>
+            <th>operation</th>
+            <th>amount BGN</th>
+        </tr>
+        <tr ng-repeat="track in vm.tracks | limitTo : vm.pageSize">
+            <td>{{track.date | date}}</td>
+            <td>{{track.operation}}</td>
+            <td>{{track.amount}}</td>
+        </tr>
+    </table>
+
+    <nav aria-label="Page navigation" class="center">
+        <div class="text-center">
+            <ul class="pagination">
+                <li>
+                    <a ng-click="vm.previous()" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; Newer</span>
+                    </a>
+                </li>
+                <li><a>{{vm.currentPage}}</a></li>
+                <li>
+                    <a ng-click="vm.next()" aria-label="Next">
+                        <span aria-hidden="true">Older &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

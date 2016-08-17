@@ -1,5 +1,6 @@
 package com.clouway.bank.adapter.persistence;
 
+import com.clouway.bank.core.AccountHistoryRepository;
 import com.clouway.bank.core.AccountRepository;
 import com.clouway.bank.core.DataStore;
 import com.google.inject.AbstractModule;
@@ -18,5 +19,7 @@ public class BankPersistentModule extends AbstractModule {
     bind(DataStore.class).to(DatabaseHelper.class);
 
     bind(AccountRepository.class).to(PersistentAccountRepository.class);
+
+    bind(AccountHistoryRepository.class).to(PersistentAccountHistoryRepository.class);
   }
 }
