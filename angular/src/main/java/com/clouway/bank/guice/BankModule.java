@@ -2,6 +2,7 @@ package com.clouway.bank.guice;
 
 import com.clouway.bank.adapter.http.validation.BankTransactionValidator;
 import com.clouway.bank.adapter.persistence.BankPersistentModule;
+import com.clouway.bank.core.AccountRepository;
 import com.clouway.bank.core.CurrentSessionProvider;
 import com.clouway.bank.core.SessionProvider;
 import com.clouway.bank.core.TransactionValidator;

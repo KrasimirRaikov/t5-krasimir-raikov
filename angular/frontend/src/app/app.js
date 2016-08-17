@@ -1,10 +1,10 @@
 angular.module('bank', [
-  'templates-app',
-  'templates-common',
-  'bank.home',
-  'bank.deposit',
-  'ui.router',
-  'angular-growl'
+    'templates-app',
+    'templates-common',
+    'bank.home',
+    'bank.operations',
+    'ui.router',
+    'angular-growl'
 ])
 
   .config(function myAppConfig($stateProvider, $urlRouterProvider) {

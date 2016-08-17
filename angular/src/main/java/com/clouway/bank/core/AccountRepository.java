@@ -7,19 +7,25 @@ package com.clouway.bank.core;
  */
 public interface AccountRepository {
 
-  /**
-   * deposits funds
-   *
-   * @param amount funds to deposit
-   */
-  Double deposit(Amount amount);
+    /**
+     * deposits funds
+     *
+     * @param amount funds to deposit
+     */
+    Double deposit(Amount amount);
 
+    /**
+     * withdraw funds
+     *
+     * @param amount funds to withdraw
+     */
+    Double withdraw(Amount amount);
 
-  /**
-   * will return the current state of the balance
-   *
-   * @param userId user identification
-   * @return the balance for the given user
-   */
-  Double getCurrentBalance(String userId);
+    /**
+     * will return the current state of the balance
+     *
+     * @param userId user identification
+     * @return the balance for the given user
+     */
+    Double getCurrentBalance(String userId);
 }
