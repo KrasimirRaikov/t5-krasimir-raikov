@@ -2,6 +2,8 @@ package com.clouway.bank.adapter.persistence;
 
 import com.clouway.bank.core.AccountRepository;
 import com.clouway.bank.core.DataStore;
+import com.clouway.bank.core.SessionRepository;
+import com.clouway.bank.core.UserRepository;
 import com.google.inject.AbstractModule;
 
 import java.sql.Connection;
@@ -18,5 +20,9 @@ public class BankPersistentModule extends AbstractModule {
     bind(DataStore.class).to(DatabaseHelper.class);
 
     bind(AccountRepository.class).to(PersistentAccountRepository.class);
+
+    bind(UserRepository.class).to(PersistentUserRepository.class);
+
+    bind(SessionRepository.class).to(PersistentSessionRepository.class);
   }
 }

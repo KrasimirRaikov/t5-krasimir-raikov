@@ -3,14 +3,11 @@
  */
 describe('httpRequest tests', function () {
   beforeEach(module('common.http'));
-  httpService = {};
-  $scope = {};
-  $q = {};
-  $httpBackend = {};
+  var httpService, $scope, $q, $httpBackend;
 
-  beforeEach(inject(function (httpRequest, _$rootScope_, _$q_, _$httpBackend_) {
+  beforeEach(inject(function (httpRequest, $rootScope, _$q_, _$httpBackend_) {
     httpService = httpRequest;
-    $scope = _$rootScope_.$new();
+    $scope = $rootScope.$new();
     $q = _$q_;
     $httpBackend = _$httpBackend_;
   }));

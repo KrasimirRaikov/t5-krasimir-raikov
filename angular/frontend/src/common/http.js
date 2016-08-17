@@ -4,8 +4,27 @@
 
 angular.module('common.http', [])
 
-  .service('httpRequest', function ($http, $q) {
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push(function ($q, $injector) {
 
+      return {
+        'response': function (response) {
+          return response;
+        },
+        'responseError': function (rejection) {
+
+          if (rejection.status === 401) {
+            var $state = $injector.get('$state');
+            $state.go("login");
+          }
+
+          return $q.reject(rejection);
+        }
+      };
+    });
+  })
+
+  .service('httpRequest', function ($http, $q) {
     this.get = function (url, params, data) {
       return this.send('GET', url, params, data);
     };
@@ -41,4 +60,5 @@ angular.module('common.http', [])
 
       return deferred.promise;
     };
+
   });

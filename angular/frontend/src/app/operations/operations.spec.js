@@ -92,13 +92,16 @@ describe('OperationsCtrl should', function () {
 
   it('could not load current balance', function () {
     accountGateway.getCurrentBalance = jasmine.createSpy('get current balance').and.returnValue(deferred.promise);
+    growl.error = jasmine.createSpy("growl error");
+    var message = "could not get the balance";
 
     ctrl.loadCurrentBalance();
 
-    deferred.reject(125);
+    deferred.reject(message);
     scope.$apply();
 
     expect(ctrl.balance).toEqual(undefined);
+    expect(growl.error).toHaveBeenCalledWith(message);
   });
 
 });
