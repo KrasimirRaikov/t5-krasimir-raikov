@@ -1,0 +1,15 @@
+*.sw*
+*~
+.idea/
+build/
+bin/
+node_modules/
+vendor/
+karma/
+vendor/
+.gitmodules
+.travis.yml
+module.prefix
+module.suffix
+changelog.tpl
+LICENSE
