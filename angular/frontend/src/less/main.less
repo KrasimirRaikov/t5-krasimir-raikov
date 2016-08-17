@@ -3,23 +3,16 @@
  * stylesheets used throughout the application as this is the only stylesheet in
  * the Grunt configuration that is automatically processed.
  */
-
-
 /**
  * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
  * project should be imported as the rest are just wasting space.
  */
-
 @import '../../vendor/bootstrap/less/bootstrap.less';
-
-
 /**
  * This is our main variables file. We must include it last so we can overwrite any variable
  * definitions in our imported stylesheets.
  */
-
 @import 'variables.less';
-
 
 /**
  * Typography
@@ -62,19 +55,17 @@ h2 {
   color: #666;
 }
 
-
 /**
  * Navigation
  */
 
 .navbar {
   margin-top: 20px;
-  
+
   small {
     font-size: 60%;
   }
 }
-
 
 /**
  * Footer
@@ -101,7 +92,7 @@ h2 {
         color: @gray-light;
         text-decoration: none;
         font-size: 40px;
-        .transition( 250ms ease-in-out );
+        .transition(250ms ease-in-out);
 
         &:hover {
           color: @gray;

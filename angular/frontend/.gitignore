@@ -7,8 +7,10 @@ node_modules/
 vendor/
 karma/
 vendor/
+cmd/
+build.sh
+frontend.go
 .gitmodules
-.travis.yml
 module.prefix
 module.suffix
 changelog.tpl

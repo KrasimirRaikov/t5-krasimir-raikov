@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+
+out/
+.gradle/
+.idea/
+build/
+classes/
+gradle/
+gradlew
+gradlew.bat
+src/main/webapp/
