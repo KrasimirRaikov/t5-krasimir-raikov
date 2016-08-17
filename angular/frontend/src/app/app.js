@@ -4,7 +4,8 @@ angular.module('bank', [
   'bank.home',
   'bank.operations',
   'ui.router',
-  'angular-growl'
+  'angular-growl',
+  'bank.history'
 ])
 
   .config(function myAppConfig($stateProvider, $urlRouterProvider, growlProvider) {
