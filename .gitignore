@@ -2,15 +2,6 @@
 out/
 
 
-angular/out/
-angular/.gradle/
-angular/.idea/
-angular/build/
-angular/classes/
-angular/gradle/
-angular/gradlew
-angular/gradlew.bat
-
 build
 out
 *.iml
