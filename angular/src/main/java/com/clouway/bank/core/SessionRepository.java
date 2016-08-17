@@ -21,6 +21,13 @@ public interface SessionRepository {
   Session retrieve(String sessionId);
 
   /**
+   * Removes session from the repository
+   *
+   * @param sessionId the id of the session
+   */
+  void remove(String sessionId);
+
+  /**
    * Updates the session by it's id
    *
    * @param session the updated version of the session

@@ -52,6 +52,13 @@ public class PersistentSessionRepository implements SessionRepository {
     return sessions.get(0);
   }
 
+  @Override
+  public void remove(String sessionId) {
+    String query = "DELETE FROM sessions WHERE sessionid=?;";
+
+    dataStore.executeQuery(query, sessionId);
+  }
+
   /**
    * Updates the session by it's id
    *

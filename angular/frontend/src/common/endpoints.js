@@ -5,5 +5,6 @@ angular.module('common.endpoints', [])
     "DEPOSIT": "r/account/deposit",
     "WITHDRAW" : "r/account/withdraw",
     "LOGIN" : "r/account/login",
-    "CURRENT_USER" : "r/account/name"
+    "CURRENT_USER" : "r/account/name",
+    "LOGOUT": "r/account/logout"
   });
