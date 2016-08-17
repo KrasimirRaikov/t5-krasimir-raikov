@@ -35,6 +35,8 @@ public class BankServletModule extends ServletModule {
     serve("/r/account/balance").with(AccountBalanceService.class);
 
     serve("/r/account/name").with(AccountIdService.class);
+
+    serve("/r/accounts/count").with(OnlineUsersService.class);
   }
 
   @Provides

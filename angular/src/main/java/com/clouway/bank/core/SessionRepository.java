@@ -26,4 +26,12 @@ public interface SessionRepository {
    * @param session the updated version of the session
    */
   void update(Session session);
+
+  /**
+   * Counts the number of active sessions
+   *
+   * @param currentTime the current time in milliseconds
+   * @return
+   */
+  Integer countActive(Long currentTime);
 }

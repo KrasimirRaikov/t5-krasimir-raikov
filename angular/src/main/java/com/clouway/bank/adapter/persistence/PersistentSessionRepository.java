@@ -63,4 +63,17 @@ public class PersistentSessionRepository implements SessionRepository {
 
     dataStore.executeQuery(query, new Timestamp(session.expirationTime), session.id);
   }
+
+  @Override
+  public Integer countActive(Long currentTime) {
+    String query = "SELECT count(*) FROM sessions WHERE expirationtime>?;";
+
+    RowFetcher<Integer> rowFetcher = rs -> rs.getInt(1);
+
+    List<Integer> amountActiveSessions = dataStore.fetchRows(query, rowFetcher, new Timestamp(currentTime));
+    if (amountActiveSessions.isEmpty()) {
+      return null;
+    }
+    return amountActiveSessions.get(0);
+  }
 }
