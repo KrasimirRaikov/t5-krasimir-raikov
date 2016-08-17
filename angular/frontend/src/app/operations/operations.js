@@ -2,7 +2,7 @@
  * @author Krasimir Raikov(raikov.krasimir@gmail.com)
  */
 
-angular.module('bank.deposit', [
+angular.module('bank.operations', [
   'ui.router',
   'angular-growl',
   'common.http',
@@ -11,16 +11,16 @@ angular.module('bank.deposit', [
 
 
   .config(function config($stateProvider) {
-    $stateProvider.state('deposit', {
-      url: '/deposit',
+    $stateProvider.state('operations', {
+      url: '/operations',
       views: {
         "main": {
-          controller: 'DepositCtrl',
+          controller: 'OperationsCtrl',
           controllerAs: 'vm',
-          templateUrl: 'deposit/deposit.tpl.html'
+          templateUrl: 'operations/operations.tpl.html'
         }
       },
-      data: {pageTitle: 'Deposit'}
+      data: {pageTitle: 'Operations'}
     });
 
   })
@@ -32,12 +32,15 @@ angular.module('bank.deposit', [
       },
       depositFunds: function (depositAmount) {
         return httpRequest.post(bankEndpoints.DEPOSIT, {}, {amount: depositAmount});
+      },
+      withdrawFunds: function (withdrawAmount) {
+        return httpRequest.post(bankEndpoints.WITHDRAW, {}, {amount: withdrawAmount});
       }
     };
   })
 
 
-  .controller('DepositCtrl', function DepositController(accountGateway, growl) {
+  .controller('OperationsCtrl', function OperationsController(accountGateway, growl) {
 
     var vm = this;
 
@@ -49,6 +52,16 @@ angular.module('bank.deposit', [
       }, function (depositErrorResult) {
         growl.error('Error: We were not able to deposit the funds. ' + depositErrorResult);
       });
+    };
+
+    vm.withdraw = function (amount) {
+      accountGateway.withdrawFunds(amount).then(
+        function (withdrawResult) {
+          growl.success(withdrawResult.message);
+          vm.balance = withdrawResult.currentBalance;
+        }, function (withdrawErrorResult) {
+          growl.error('Error: We were not able to withdraw the funds. ' + withdrawErrorResult);
+        });
     };
 
     vm.loadCurrentBalance = function () {

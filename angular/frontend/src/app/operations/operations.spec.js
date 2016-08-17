@@ -1,17 +1,17 @@
 /**
  * @author Krasimir Raikov(raikov.krasimir@gmail.com)
  */
-describe('DepositCtrl should', function () {
+describe('OperationsCtrl should', function () {
   var $q, scope, ctrl, deferred, accountGateway, growl;
 
   beforeEach(function () {
-    module('bank.deposit');
+    module('bank.operations');
     inject(function ($controller, _$q_, _$rootScope_) {
       accountGateway = {};
       growl = {};
       $q = _$q_;
       scope = _$rootScope_.$new();
-      ctrl = $controller('DepositCtrl', {accountGateway: accountGateway, growl: growl});
+      ctrl = $controller('OperationsCtrl', {accountGateway: accountGateway, growl: growl});
       deferred = $q.defer();
     });
   });
@@ -45,6 +45,37 @@ describe('DepositCtrl should', function () {
 
     expect(ctrl.balance).toBe(100);
     expect(growl.error).toHaveBeenCalledWith("Error: We were not able to deposit the funds. " + message);
+
+  });
+
+  it('withdraw some funds', function () {
+    var response = {message: "message", currentBalance: 100};
+    ctrl.balance = 300;
+    accountGateway.withdrawFunds = jasmine.createSpy('withdraw').and.returnValue(deferred.promise);
+    growl.success = jasmine.createSpy("growl success");
+
+    ctrl.withdraw(ctrl.amount);
+
+    deferred.resolve(response);
+    scope.$digest();
+
+    expect(ctrl.balance).toBe(100);
+    expect(growl.success).toHaveBeenCalledWith(response.message);
+  });
+
+  it('fail to withdraw funds', function () {
+    var message = "failed to withdraw funds";
+    ctrl.balance = 100;
+    accountGateway.withdrawFunds = jasmine.createSpy('withdraw').and.returnValue(deferred.promise);
+    growl.error = jasmine.createSpy("growl error");
+
+    ctrl.withdraw(ctrl.amount);
+
+    deferred.reject(message);
+    scope.$apply();
+
+    expect(ctrl.balance).toBe(100);
+    expect(growl.error).toHaveBeenCalledWith("Error: We were not able to withdraw the funds. " + message);
 
   });
 

@@ -71,4 +71,27 @@ public class PersistentAccountRepositoryTest {
     assertThat(depositedAmount, is(equalTo(amount)));
   }
 
+  @Test
+  public void withdrawFunds() throws ValidationException {
+    List<Double> beforeWithdraw = new ArrayList<>();
+    beforeWithdraw.add(amount * 2);
+
+    List<Double> withdrawResult = new ArrayList<>();
+    withdrawResult.add(amount);
+
+    context.checking(new Expectations() {{
+      oneOf(dataStore).fetchRows(with(equalTo("SELECT balance FROM account WHERE username=?")), with(any(RowFetcher.class)), with(equalTo(new Object[]{"Ivan"})));
+      will(returnValue(beforeWithdraw));
+
+      oneOf(dataStore).executeQuery("UPDATE account SET balance=balance-? WHERE username=?", new Object[]{amount, "Ivan"});
+
+      oneOf(dataStore).fetchRows(with(equalTo("SELECT balance FROM account WHERE username=?")), with(any(RowFetcher.class)), with(equalTo(new Object[]{"Ivan"})));
+      will(returnValue(withdrawResult));
+    }});
+
+    Double withdrawnAmount = accountRepository.withdraw(new Amount(username, amount));
+
+    assertThat(withdrawnAmount, is(equalTo(amount)));
+  }
+
 }

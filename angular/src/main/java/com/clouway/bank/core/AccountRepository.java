@@ -14,6 +14,12 @@ public interface AccountRepository {
    */
   Double deposit(Amount amount);
 
+  /**
+   * withdraw funds
+   *
+   * @param amount funds to withdraw
+   */
+  Double withdraw(Amount amount);
 
   /**
    * will return the current state of the balance
