@@ -1,14 +1,15 @@
 angular.module('bank', [
-    'templates-app',
-    'templates-common',
-    'bank.home',
-    'bank.operations',
-    'ui.router',
-    'angular-growl'
+  'templates-app',
+  'templates-common',
+  'bank.home',
+  'bank.operations',
+  'ui.router',
+  'angular-growl'
 ])
 
-  .config(function myAppConfig($stateProvider, $urlRouterProvider) {
+  .config(function myAppConfig($stateProvider, $urlRouterProvider, growlProvider) {
     $urlRouterProvider.otherwise('/home');
+    growlProvider.globalTimeToLive(3000);
   })
 
   .controller('AppCtrl', function AppCtrl($scope) {

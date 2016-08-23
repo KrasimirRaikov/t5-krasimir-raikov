@@ -9,10 +9,10 @@ import java.sql.Connection;
  */
 public interface ConnectionProvider {
 
-    /**
-     * Gets connection
-     *
-     * @return connection to the database
-     */
-    Connection get();
+  /**
+   * Gets connection
+   *
+   * @return connection to the database
+   */
+  Connection get();
 }

@@ -1,12 +1,20 @@
-<div class="jumbotron" ng-controller="OperationsCtrl">
-    <form>
+<div class="jumbotron">
+
+    <p ng-init="vm.loadCurrentBalance()">Balance: {{vm.balance | currency:"BGN "}}</p>
+    <form name="myform">
         <div class="form-group">
             <label for="inputAmount">Amount</label>
-            <input type="number" step="0.01" min="0" class="form-control" id="inputAmount" placeholder="Amount" ng-model="amount">
+            <input type="number" step="0.01" min="0.01" max="10000" class="form-control" id="inputAmount"
+                   placeholder="Amount"
+                   ng-model="vm.amount" required>
         </div>
-        <button type="button" class="btn btn-default" ng-click="deposit()">Deposit</button>
-        <button type="button" class="btn btn-default" >Withdraw</button>
+        <button type="submit" class="btn btn-default" ng-disabled="myform.$invalid" ng-click="vm.deposit(vm.amount)">
+            Deposit
+        </button>
+        <button type="submit" class="btn btn-default" ng-disabled="myform.$invalid" ng-click="vm.withdraw(vm.amount)">
+            Withdraw
+        </button>
     </form>
 
-    <p>{{message}}</p>
+
 </div>

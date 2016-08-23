@@ -18,6 +18,8 @@ public class BankServletModule extends ServletModule {
 
     serve("/r/account/deposit").with(AccountDepositService.class);
 
+    serve("/r/account/withdraw").with(AccountWithdrawService.class);
+
     serve("/r/account/balance").with(AccountBalanceService.class);
   }
 }

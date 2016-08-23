@@ -4,6 +4,7 @@ import com.clouway.bank.core.AccountRepository;
 import com.clouway.bank.core.Amount;
 import com.clouway.bank.core.DataStore;
 import com.clouway.bank.core.RowFetcher;
+import com.clouway.bank.core.ValidationException;
 import com.google.inject.Inject;
 
 /**
@@ -26,6 +27,24 @@ public class PersistentAccountRepository implements AccountRepository {
   @Override
   public Double deposit(Amount amount) {
     String updateQuery = "UPDATE account SET balance=balance+? WHERE username=?";
+    dataStore.executeQuery(updateQuery, amount.value, amount.userId);
+
+    return getCurrentBalance(amount.userId);
+  }
+
+  /**
+   * Withdraws funds
+   *
+   * @param amount funds to withdraw
+   * @return
+   */
+  @Override
+  public Double withdraw(Amount amount) {
+    String updateQuery = "UPDATE account SET balance=balance-? WHERE username=?";
+    if (getCurrentBalance(amount.userId) < amount.value) {
+      throw new ValidationException("insufficient amount");
+    }
+
     dataStore.executeQuery(updateQuery, amount.value, amount.userId);
 
     return getCurrentBalance(amount.userId);
